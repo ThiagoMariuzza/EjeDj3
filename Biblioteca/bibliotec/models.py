@@ -2,6 +2,13 @@ from django.db import models
 
 # Create your models here.
 
+EstadoLibro = [
+    ('IN', 'En biblioteca'),
+    ('BW', 'Prestado'),
+    ('RQ', 'Pedido'),
+    ('RV', 'Reservado'),
+]
+
 class Persona(models.Model):
     id = models.AutoField(primary_key=True)
     tipoPersona = models.CharField(max_length=30)
@@ -27,12 +34,12 @@ class Material(models.Model):
     tipoMaterial = models.CharField(max_length=30)
     autor = models.CharField(max_length=30)
     titulo = models.CharField(max_length=30)
-    anio = models.IntegerField()
-    status = models.CharField(max_length=30)
+    anio = models.IntegerField(default=2000)
+    status = models.CharField(max_length=2, choices=EstadoLibro, default='En biblioteca')
 
 class Libro(Material):
     editorial = models.CharField(max_length=30)
-    portada = models.ImageField()
+    portada = models.ImageField(max_length=100, upload_to='fotos_tapa/', default='fotos_tapa/default.png', blank=True)
 
 
 class Revista(Material):
