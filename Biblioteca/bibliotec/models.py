@@ -8,8 +8,9 @@ class Persona(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     correo = models.CharField(max_length=30)
-    telefono = models.ImageField()
-    numLibros = models.ImageField()
+    telefono = models.CharField(max_length=30)
+    numLibros = models.IntegerField()
+
     #adeudo = models.DoubleFields()
 
     def _str_(self):
@@ -26,11 +27,13 @@ class Material(models.Model):
     tipoMaterial = models.CharField(max_length=30)
     autor = models.CharField(max_length=30)
     titulo = models.CharField(max_length=30)
-    anio = models.IntegerField
+    anio = models.IntegerField()
     status = models.CharField(max_length=30)
 
 class Libro(Material):
     editorial = models.CharField(max_length=30)
+    portada = models.ImageField()
+
 
 class Revista(Material):
     pass
